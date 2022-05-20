@@ -1,0 +1,82 @@
+var form=document.getElementById('addForm');
+var itemList = document.getElementById('items')
+var filter= document.getElementById('filter')
+var childSpan= document.getElementsByClassName('child-2')
+//childSpan.style.color='red'
+//add text
+form.addEventListener('submit',(e)=>{
+    e.preventDefault()
+
+    //create new li item
+    var newItem = document.getElementById('item');
+    var li= document.createElement('li');
+    li.className='list-group-item'
+
+    var span1= document.createElement('span');
+    span1.className='child-2'
+    span1.appendChild(document.createTextNode(newItem.value))
+
+    li.appendChild(span1)
+    
+
+//crrating a new description box
+var description= document.getElementById('description')
+var span2= document.createElement('p');
+span2.appendChild(document.createTextNode(description.value))
+li.appendChild(span2);
+
+itemList.appendChild(li)
+
+//create a delete button element
+
+var deleteButton = document.createElement('button');
+deleteButton.className='btn btn-danger btn-sm float-right delete';
+deleteButton.appendChild(document.createTextNode('X'))
+li.appendChild(deleteButton)
+
+// creating a edit button
+var editBtn = document.createElement('button');
+editBtn.className='btn btn-success btn-sm float-right success'
+editBtn.appendChild(document.createTextNode('!'));
+li.appendChild(editBtn)
+
+    console.log(newItem.value);
+
+})
+
+
+//remove item
+itemList.addEventListener('click',(e)=>{
+    e.preventDefault();
+if(e.target.classList.contains('delete')){
+    if(confirm('Are you sure')){
+        var li= e.target.parentElement;
+        itemList.removeChild(li)
+    }
+}
+})
+
+
+//filter
+filter.addEventListener('keyup',(e)=>{
+    var text = e.target.value.toLowerCase();
+    var items=itemList.getElementsByTagName('li')
+
+    //converting into array
+    Array.from(items).forEach(function(item){
+        var itemName=item.children[0].textContent;
+        var itemDesc=item.children[1].textContent;
+        console.log(itemName);
+        console.log(itemDesc);
+        if(itemName.toLowerCase().indexOf(text)!=-1 || itemDesc.toLowerCase().indexOf(text)!=-1){
+            item.style.display='block'
+        }
+        else{
+            item.style.display='none'
+        }
+    })
+
+    //console.log(text);
+})
+
+
