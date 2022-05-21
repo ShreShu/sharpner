@@ -3,7 +3,7 @@ var container = document.getElementById('userData')
 
 var formData = JSON.parse(localStorage.getItem("userData")) || [];
 
-window.onload = () => {
+document.addEventListener('DOMContentLoaded', () => {
     let myObj_deSerialized = JSON.parse(localStorage.getItem("userData"))
     container.innerHTML = "";
     myObj_deSerialized.forEach(user => {
@@ -15,7 +15,7 @@ window.onload = () => {
     })
 
 }
-
+)
 
 
 myForm.addEventListener('submit', (e) => {
