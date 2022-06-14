@@ -1,3 +1,13 @@
+document.addEventListener("DOMContentLoaded", () => {
+  container.innerHTML = "";
+  axios
+    .get("https://crudcrud.com/api/fbeb67f713f048c89d57f851b4c77102/users")
+    .then((res) => showOutput(res.data))
+    .catch((error) => {
+      console.log(error);
+    });
+});
+
 myForm.addEventListener("submit", (e) => {
   e.preventDefault();
   var n = document.getElementById("name");
