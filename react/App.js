@@ -1,5 +1,7 @@
+import React from "react";
 import ExpenseItem from "./components/ExpenseItem";
-
+import Card from "./components/Card";
+import { ExpenseForm } from "./components/ExpenseForm";
 function App() {
   const expenses = [
     {
@@ -19,17 +21,21 @@ function App() {
     },
   ];
   return (
-    <div>
+    <Card>
       <h2>Let's get started!</h2>
-      {expenses.forEach((expense) => {
-        <ExpenseItem
-          date={expense.expensedate}
-          amount={expenseAmount}
-          LocationOfExpenditure={LocationOfExpenditure}
-        />;
+      <ExpenseForm />
+      <h3>HEllo</h3>
+      {expenses.map((expense) => {
+        return (
+          <ExpenseItem
+            key="1"
+            date={expense.expensedate}
+            amount={expense.expenseAmount}
+            LocationOfExpenditure={expense.LocationOfExpenditure}
+          />
+        );
       })}
-    </div>
+    </Card>
   );
 }
-
 export default App;
