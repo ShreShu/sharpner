@@ -1,37 +1,29 @@
-import React from "react";
+import React, { useState } from "react";
 import ExpenseItem from "./components/ExpenseItem";
 import Card from "./components/Card";
 import { ExpenseForm } from "./components/ExpenseForm";
 function App() {
-  const expenses = [
-    {
-      expensedate: new Date(2021, 2, 28),
-      expenseAmount: 294,
-      LocationOfExpenditure: "Food",
-    },
-    {
-      expensedate: new Date(2021, 2, 28),
-      expenseAmount: 294,
-      LocationOfExpenditure: "Food",
-    },
-    {
-      expensedate: new Date(2021, 2, 28),
-      expenseAmount: 294,
-      LocationOfExpenditure: "Food",
-    },
-  ];
+  const [expenses, setExpenses] = useState([]);
+
+  const addExpense = (expense) => {
+    console.log(expense);
+    setExpenses((prevExpenses) => {
+      return [expense, ...prevExpenses];
+    });
+  };
+
   return (
     <Card>
       <h2>Let's get started!</h2>
-      <ExpenseForm />
+      <ExpenseForm addExpense={addExpense} />
       <h3>HEllo</h3>
       {expenses.map((expense) => {
         return (
           <ExpenseItem
-            key="1"
-            date={expense.expensedate}
+            key={Math.random()}
+            date={expense.expenseDate}
             amount={expense.expenseAmount}
-            LocationOfExpenditure={expense.LocationOfExpenditure}
+            title={expense.expenseTitle}
           />
         );
       })}
